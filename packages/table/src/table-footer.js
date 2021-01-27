@@ -61,12 +61,12 @@ export default {
             {
               this.columns.map((column, cellIndex) => <td
                 key={cellIndex}
-                colspan={ column.colSpan }
-                rowspan={ column.rowSpan }
+                colspan={ sums[cellIndex] && typeof sums[cellIndex].colSpan !== 'undefined' ? column.colSpan : sums[cellIndex].colSpan }
+                rowspan={ sums[cellIndex] && typeof sums[cellIndex].rowSpan !== 'undefined' ? column.rowSpan : sums[cellIndex].rowSpan }
                 class={ this.getRowClasses(column, cellIndex) }>
                 <div class={ ['cell', column.labelClassName] }>
                   {
-                    sums[cellIndex]
+                    sums[cellIndex] && typeof sums[cellIndex].text !== 'undefined' ? sums[cellIndex] : sums[cellIndex].text
                   }
                 </div>
               </td>)
